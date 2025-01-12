@@ -116,6 +116,7 @@ GEM
     matrix (0.4.2)
     method_source (1.1.0)
     mini_mime (1.1.5)
+    mini_portile2 (2.8.8)
     minitest (5.25.4)
     msgpack (1.7.5)
     mysql2 (0.5.6)
@@ -129,8 +130,12 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.4)
+    nokogiri (1.15.7)
+      mini_portile2 (~> 2.8.2)
+      racc (~> 1.4)
     nokogiri (1.15.7-x86_64-linux)
       racc (~> 1.4)
+    pg (1.5.9)
     psych (5.2.2)
       date
       stringio
@@ -227,6 +232,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   mysql2 (~> 0.5)
+  pg
   puma (~> 5.0)
   rails (~> 7.0.8, >= 7.0.8.7)
   selenium-webdriver
