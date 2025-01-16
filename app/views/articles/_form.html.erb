@@ -1,0 +1,24 @@
+<% if @article.errors.any? %>
+  <h4>Errors</h4>
+  <ul>
+    <% @article.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with(model: @article, local: true, data: { turbo: false }) do |f| %>
+  <div style="margin-bottom: 16px;">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+
+  <div style="margin-bottom: 16px;">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>
