@@ -1,3 +1,11 @@
-<h1>Home Page</h1>
-
-<%= link_to "Articles list", articles_path %> | <%= link_to "About page", about_path %>
+<div class="container d-flex flex-column app-main">
+  <div class="card text-bg-dark home-page-card">
+    <%= image_tag 'home-page.jpg', class: "card-img", alt: "Alpha Blog"  %>
+    <div class="card-img-overlay">
+      <h1 class="card-title h3">Alpha Blog</h1>
+      <p class="card-text home-page-card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      
+      <button class="btn btn-primary">Sign up!</button>
+    </div>
+  </div>
+</div>

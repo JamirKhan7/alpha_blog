@@ -1,6 +1,28 @@
-<h1>Showing article details</h1>
+<div class="container app-main">
+  <h1 class="h3 mb-3"><%= @article.title %></h1>
 
-<p><strong>Title:</strong> <%= @article.title %></p>
-<p><strong>Description:</strong> <%= @article.description %></p>
+  <div class="row mb-4">
+    <div class="col-md-7 col-lg-8">
+        <div class="card shadow rounded">
+          <div class="card-body">
+            <div class="card-text mb-4"><%= simple_format(@article.description) %></div>
 
-<%= link_to "Edit", edit_article_path(@article) %> | <%= link_to "Delete", article_path(@article), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %> | <%= link_to "Return to articles list", articles_path %>
+            <%= link_to "Edit", edit_article_path(@article), class: "btn btn-light" %>
+            <%= link_to "Delete", article_path(@article), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-light" %>
+
+            <div class="text-body-secondary mt-4">
+              by Jamir Khan
+              <div>
+                <small>
+                  Created <%= time_ago_in_words(@article.created_at) %> ago,
+                  Updated <%= time_ago_in_words(@article.updated_at) %> ago
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  
+  <%= link_to "Return to articles list", articles_path %>
+</div>
