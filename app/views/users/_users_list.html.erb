@@ -1,0 +1,20 @@
+<div class="row">
+  <% @users.each do |user| %>
+    <div class="col-sm-4 mb-4">
+      <div class="card shadow rounded h-100">
+        <div class="card-body">
+          <h5 class="card-title"><%= link_to user.username, user_path(user), class: "link-underline-light" %></h5>
+          <p class="card-text"><%= pluralize(user.articles.count, 'article') %></p>
+          <%= link_to "Show profile", user_path(user), class: "btn btn-light" %>
+          <%= link_to "Edit profile", edit_user_path(user), class: "btn btn-light" %>
+
+          <div class="text-body-secondary mt-4">
+            <small>
+              Joined <%= time_ago_in_words(user.created_at) %> ago
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -75,3 +75,4 @@ end
 
 gem 'bootstrap', '~> 5.3.3'
 gem 'jquery-rails'
+gem 'will_paginate', '~> 4.0'

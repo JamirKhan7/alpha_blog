@@ -1,6 +1,11 @@
 <div class="container app-main">
-  <h1 class="h3 mb-3"><%= "#{@user.username}'s Profile" %></h1>
+  <div class="d-flex justify-content-between align-items-center">
+    <h1 class="h3 mb-3"><%= "#{@user.username}'s Profile" %></h1>
+    <%= link_to "Edit profile", edit_user_path(@user), class: "btn btn-light" %>
+  </div>
   
   <h4>Articles</h4>
   <%= render partial: "articles/articles_list" %>
+
+  <%= will_paginate @articles %>
 </div>

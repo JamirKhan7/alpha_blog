@@ -10,7 +10,9 @@
           <%= link_to "Delete", article_path(article), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-light" %>
 
           <div class="text-body-secondary mt-4">
-            by <%= article.user&.username %>
+            <% if article.user.present? %>
+              by <%= link_to article.user.username, user_path(article.user) %>
+            <% end %>
             <div>
               <small>
                 Created <%= time_ago_in_words(article.created_at) %> ago,
