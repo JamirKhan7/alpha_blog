@@ -1,6 +1,6 @@
 <div class="row">
   <%= form_with(model: @article, local: true, data: { turbo: false }, class: "col-md-7 col-lg-8") do |f| %>
-    <%= render partial: "shared/errors" %>
+    <%= render partial: "shared/errors", locals: { obj: @article } %>
 
     <div class="mb-3">
       <%= f.label :title, class: "form-label" %>

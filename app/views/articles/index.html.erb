@@ -14,7 +14,7 @@
             <%= link_to "Delete", article_path(article), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-light" %>
 
             <div class="text-body-secondary mt-4">
-              by Jamir Khan
+              by <%= article.user&.username %>
               <div>
                 <small>
                   Created <%= time_ago_in_words(article.created_at) %> ago,
