@@ -7,8 +7,10 @@
           <div class="card-body">
             <div class="card-text mb-4"><%= simple_format(@article.description) %></div>
 
-            <%= link_to "Edit", edit_article_path(@article), class: "btn btn-light" %>
-            <%= link_to "Delete", article_path(@article), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-light" %>
+            <% if logged_in? && @article.user == current_user %>
+              <%= link_to "Edit", edit_article_path(@article), class: "btn btn-light" %>
+              <%= link_to "Delete", article_path(@article), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-light" %>
+            <% end %>
 
             <div class="text-body-secondary mt-4">
               <% if @article.user.present? %>

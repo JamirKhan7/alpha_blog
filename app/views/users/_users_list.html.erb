@@ -6,7 +6,10 @@
           <h5 class="card-title"><%= link_to user.username, user_path(user), class: "link-underline-light" %></h5>
           <p class="card-text"><%= pluralize(user.articles.count, 'article') %></p>
           <%= link_to "Show profile", user_path(user), class: "btn btn-light" %>
-          <%= link_to "Edit profile", edit_user_path(user), class: "btn btn-light" %>
+
+          <% if logged_in? && user == current_user %>
+            <%= link_to "Edit profile", edit_user_path(user), class: "btn btn-light" %>
+          <% end %>
 
           <div class="text-body-secondary mt-4">
             <small>
