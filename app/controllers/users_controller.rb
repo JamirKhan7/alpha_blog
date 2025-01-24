@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :show, :destroy]
   before_action :require_user, only: [:edit, :update]
-  before_action :require_profile_owner, only: [:edit, :update, :destroy]
+  before_action :require_profile_owner_or_admin, only: [:edit, :update, :destroy]
 
   def new
     @user = User.new
@@ -41,8 +41,8 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    session[:user_id] = nil
-    flash[:notice] = "Your account has been successfully deleted, and all associated data has also been removed."
+    session[:user_id] = nil if @user == current_user
+    flash[:notice] = "Account has been successfully deleted, and all associated data has also been removed."
     redirect_to articles_path
   end
 
@@ -56,9 +56,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def require_profile_owner
-    if @user != current_user
-      flash[:alert] = "You can not edit this profile."
+  def require_profile_owner_or_admin
+    if @user != current_user && !current_user.admin?
+      flash[:alert] = "You can not edit or delete this profile."
       redirect_to user_path(@user)
     end
   end
