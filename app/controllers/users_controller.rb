@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update, :show]
+  before_action :set_user, only: [:edit, :update, :show, :destroy]
+  before_action :require_user, only: [:edit, :update]
+  before_action :require_profile_owner, only: [:edit, :update, :destroy]
+
   def new
     @user = User.new
   end
@@ -36,6 +39,13 @@ class UsersController < ApplicationController
     @users = User.paginate(page: params[:page], per_page: 5)
   end
 
+  def destroy
+    @user.destroy
+    session[:user_id] = nil
+    flash[:notice] = "Your account has been successfully deleted, and all associated data has also been removed."
+    redirect_to articles_path
+  end
+
   private
 
   def user_params
@@ -44,5 +54,12 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def require_profile_owner
+    if @user != current_user
+      flash[:alert] = "You can not edit this profile."
+      redirect_to user_path(@user)
+    end
   end
 end

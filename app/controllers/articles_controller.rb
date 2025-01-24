@@ -1,5 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :require_user, except: [:index, :show]
+  before_action :require_creator, only: [:edit, :update, :destroy]
 
   def show
   end
@@ -48,5 +50,12 @@ class ArticlesController < ApplicationController
 
   def article_params
     params.require(:article).permit(:title, :description)
+  end
+
+  def require_creator
+    if current_user != @article.user
+      flash[:alert] = "You can not edit or delete this article"
+      redirect_to article_path(@article)
+    end
   end
 end
