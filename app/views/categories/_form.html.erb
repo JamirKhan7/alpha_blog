@@ -7,10 +7,9 @@
       <%= f.text_field :name, class: "form-control" %>
     </div>
 
-    <div>
-      <%= f.submit class: "btn btn-primary" %>
+    <div class="d-flex justify-content-end">
+      <%= link_to "Cancel", cancel_url, class: "btn btn-outline-secondary" %>
+      <%= f.submit class: "btn btn-primary ms-2" %>
     </div>
   <% end %>
 </div>
-
-<p class="mt-3"><%= link_to "Return to articles list", articles_path %></p>

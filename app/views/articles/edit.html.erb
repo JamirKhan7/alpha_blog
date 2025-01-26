@@ -1,4 +1,4 @@
 <div class="container app-main">
   <h1 class="h3 mb-3">Edit Article</h1>
-  <%= render partial: "form" %>
+  <%= render partial: "form", locals: { cancel_url: article_path(@article) } %>
 </div>

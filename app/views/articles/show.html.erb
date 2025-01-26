@@ -3,29 +3,43 @@
 
   <div class="row mb-4">
     <div class="col-md-7 col-lg-8">
-        <div class="card shadow rounded">
-          <div class="card-body">
-            <div class="card-text mb-4"><%= simple_format(@article.description) %></div>
+      <div class="card shadow rounded">
+        <div class="card-body">
+          <% if @article.categories.any? %>
+            <div class="mb-4">
+              <%= render @article.categories %>
+            </div>
+          <% end %>
 
-            <% if logged_in? && (@article.user == current_user || current_user.admin?) %>
-              <%= link_to "Edit", edit_article_path(@article), class: "btn btn-light" %>
-              <%= link_to "Delete", article_path(@article), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-light" %>
+          <div class="card-text mb-4"><%= simple_format(@article.description) %></div>
+
+          <div class="text-body-secondary mt-4">
+            <% if @article.user.present? %>
+              by <%= link_to @article.user.username, user_path(@article.user) %>
             <% end %>
-
-            <div class="text-body-secondary mt-4">
-              <% if @article.user.present? %>
-                by <%= link_to @article.user.username, user_path(@article.user) %>
-              <% end %>
-              <div>
-                <small>
-                  Created <%= time_ago_in_words(@article.created_at) %> ago,
-                  Updated <%= time_ago_in_words(@article.updated_at) %> ago
-                </small>
-              </div>
+            <div>
+              <small>
+                Created <%= time_ago_in_words(@article.created_at) %> ago,
+                Updated <%= time_ago_in_words(@article.updated_at) %> ago
+              </small>
             </div>
           </div>
         </div>
       </div>
+    </div>
+    <div class="col-md-5 col-lg-4">
+      <% if logged_in? && (@article.user == current_user || current_user.admin?) %>
+        <div class="d-flex">
+          <%= link_to "Edit",
+              edit_article_path(@article),
+              class: "btn btn-outline-secondary" %>
+          <%= link_to "Delete",
+              article_path(@article),
+              data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+              class: "btn btn-outline-danger ms-2" %>
+        </div>
+      <% end %>
+    </div>
   </div>
   
   <%= link_to "Return to articles list", articles_path %>

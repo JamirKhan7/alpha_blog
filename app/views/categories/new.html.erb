@@ -1,4 +1,4 @@
 <div class="container app-main">
-  <h1 class="h3 mb-3">Create a new category</h1>
-  <%= render partial: "form" %>
+  <h1 class="h3 mb-3">Create New Category</h1>
+  <%= render partial: "form", locals: { cancel_url: categories_path } %>
 </div>

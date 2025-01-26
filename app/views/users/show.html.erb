@@ -2,7 +2,7 @@
   <div class="d-flex justify-content-between align-items-center">
     <h1 class="h3 mb-3"><%= "#{@user.username}'s Profile" %></h1>
     <% if logged_in? && @user == current_user %>
-      <%= link_to "Edit profile", edit_user_path(@user), class: "btn btn-light" %>
+      <%= link_to "Edit Profile", edit_user_path(@user), class: "btn btn-outline-secondary" %>
     <% end %>
   </div>
   
